@@ -1,4 +1,4 @@
-jQuery(document).ready(function () {
+$(document).ready(function () {
 
 	$('#toplevel_page_image4io .dashicons-admin-generic').addClass('icon-image2vector');
 
@@ -47,43 +47,43 @@ jQuery(document).ready(function () {
 	});
 
 
-	jQuery(document).on('click', '.image_upload', function (e) {
+	$(document).on('click', '.image_upload', function (e) {
 		e.preventDefault();
-		jQuery('.uploader-inline').show();
-		jQuery('.allUpdateImage').hide();
+		$('.uploader-inline').show();
+		$('.allUpdateImage').hide();
 	});
 
-	jQuery(document).on('click', '#upload_button', function (e) {
+	$(document).on('click', '#upload_button', function (e) {
 		e.preventDefault();
-		jQuery('#file_upload').trigger('click');
+		$('#file_upload').trigger('click');
 	});
 
-	jQuery(document).on('click', '.uploader-inline .close', function (e) {
+	$(document).on('click', '.uploader-inline .close', function (e) {
 		e.preventDefault();
-		jQuery('.uploader-inline').hide();
+		$('.uploader-inline').hide();
 	});
 
-	jQuery(document).on('click', '.allSelect', function (e) {
+	$(document).on('click', '.allSelect', function (e) {
 		e.preventDefault();
-		jQuery('.media-toolbar-secondary').hide();
-		jQuery('.media-toolbar-two').show();
-		jQuery('.attachment .thumbnail').attr('style', 'opacity:.65');
-		jQuery("ul.attachments").data('block', 1);
+		$('.media-toolbar-secondary').hide();
+		$('.media-toolbar-two').show();
+		$('.attachment .thumbnail').attr('style', 'opacity:.65');
+		$("ul.attachments").data('block', 1);
 	});
 
-	jQuery(document).on('click', '.notDelete', function (e) {
+	$(document).on('click', '.notDelete', function (e) {
 		e.preventDefault();
-		jQuery('.media-toolbar-secondary').show();
-		jQuery('.media-toolbar-two').hide();
-		jQuery('.attachment .thumbnail').attr('style', 'opacity:1');
-		jQuery("ul.attachments").data('block', 0);
+		$('.media-toolbar-secondary').show();
+		$('.media-toolbar-two').hide();
+		$('.attachment .thumbnail').attr('style', 'opacity:1');
+		$("ul.attachments").data('block', 0);
 	});
 
-	jQuery(document).on('click', '.deleteItems', function (e) {
+	$(document).on('click', '.deleteItems', function (e) {
 		e.preventDefault();
 		var variable = '';
-		console.log(jQuery(this).attr('data-type'));
-		if (jQuery(this).attr('data-type') === 'fileList ') {
+		console.log($(this).attr('data-type'));
+		if ($(this).attr('data-type') === 'fileList ') {
 			variable = 'ul.attachments li';
 		}
 		else {
@@ -92,18 +92,18 @@ jQuery(document).ready(function () {
 
 		var sayi = 0;
 
-		jQuery(variable).each(function (index) {
-			if (jQuery(variable).eq(index).attr('data-check') == 'checked') {
+		$(variable).each(function (index) {
+			if ($(variable).eq(index).attr('data-check') == 'checked') {
 				sayi = index;
 			}
 		});
 
-		jQuery(variable).each(function (index) {
-			if (jQuery(variable).eq(index).attr('data-check') == 'checked') {
-				jQuery.ajax({
+		$(variable).each(function (index) {
+			if ($(variable).eq(index).attr('data-check') == 'checked') {
+				$.ajax({
 					url: window.plugin_option.plugin_dir + 'query.php?get=deleteFiles',
 					type: 'POST',
-					data: { 'apiKey': window.plugin_option.apiKey, 'apiSecret': window.plugin_option.apiSecret, 'path': window.plugin_option.path, 'type': jQuery(variable).eq(index).attr('data-type'), 'filesName': jQuery(variable).eq(index).attr('data-id') },
+					data: { 'apiKey': window.plugin_option.apiKey, 'apiSecret': window.plugin_option.apiSecret, 'path': window.plugin_option.path, 'type': $(variable).eq(index).attr('data-type'), 'filesName': $(variable).eq(index).attr('data-id') },
 					dataType: 'json',
 					success: function (result) {
 						var deleteValue = [];
@@ -115,24 +115,24 @@ jQuery(document).ready(function () {
 						}
 
 						if (deleteValue.status != 'Deleted') {
-							jQuery('.hatalar .alert-danger span').html(message.error.deleteError);
-							jQuery('.hatalar .alert').show();
-							jQuery('.hatalar .success').hide();
+							$('.hatalar .alert-danger span').html(message.error.deleteError);
+							$('.hatalar .alert').show();
+							$('.hatalar .success').hide();
 							hideErrorSuccess();
 						} 
 						else {
-							jQuery('.hatalar .success span').html(message.success.deleteSuccess);
-							jQuery('.hatalar .alert').hide();
-							jQuery('.hatalar .success').show();
+							$('.hatalar .success span').html(message.success.deleteSuccess);
+							$('.hatalar .alert').hide();
+							$('.hatalar .success').show();
 							hideErrorSuccess();
 
-							jQuery('.media-toolbar-two').hide();
-							jQuery('.media-toolbar-secondary').show();
-							jQuery('.attachment .thumbnail').attr('style', 'opacity:1');
-							jQuery('ul.attachments').data('block', 0);
+							$('.media-toolbar-two').hide();
+							$('.media-toolbar-secondary').show();
+							$('.attachment .thumbnail').attr('style', 'opacity:1');
+							$('ul.attachments').data('block', 0);
 
 							if (sayi == index) {
-								document_parse(jQuery('.createFolderImage').attr('data-id'), this);
+								document_parse($('.createFolderImage').attr('data-id'), this);
 							}
 						}
 					}
@@ -141,14 +141,14 @@ jQuery(document).ready(function () {
 		});
 	});
 
-	jQuery(document).on('click', '.delete-attachment', function (e) {
+	$(document).on('click', '.delete-attachment', function (e) {
 		e.preventDefault();
-		var dataId = jQuery(this).attr('data-id');
-		var dataType = jQuery(this).attr('data-type');
+		var dataId = $(this).attr('data-id');
+		var dataType = $(this).attr('data-type');
 
 		console.log(dataId + ' -> ' + dataType);
 
-		jQuery.ajax({
+		$.ajax({
 			url: window.plugin_option.plugin_dir + 'query.php?get=deleteFiles',
 			type: 'POST',
 			data: { 'apiKey': window.plugin_option.apiKey, 'apiSecret': window.plugin_option.apiSecret, 'path': window.plugin_option.path, 'type': dataType, 'filesName': dataId },
@@ -165,19 +165,19 @@ jQuery(document).ready(function () {
 				console.log(deleteValue);
 
 				if (deleteValue != 'Deleted') {
-					jQuery('.hatalar .alert span').html(deleteValue);
-					jQuery('.hatalar .alert').show();
-					jQuery('.hatalar .success').hide();
+					$('.hatalar .alert span').html(deleteValue);
+					$('.hatalar .alert').show();
+					$('.hatalar .success').hide();
 					hideErrorSuccess();
 				} 
 				else {
-					jQuery('.hatalar .success span').html(message.success.deleteSuccess);
-					jQuery('.hatalar .alert').hide();
-					jQuery('.hatalar .success').show();
+					$('.hatalar .success span').html(message.success.deleteSuccess);
+					$('.hatalar .alert').hide();
+					$('.hatalar .success').show();
 					hideErrorSuccess();
 
 					$(".mxlayer-close").trigger("click");
-					document_parse(jQuery('.createFolderImage').attr('data-id'), this);
+					document_parse($('.createFolderImage').attr('data-id'), this);
 				}
 			}
 		});
@@ -186,39 +186,39 @@ jQuery(document).ready(function () {
 
 
 
-	jQuery(document).on('click', '.urlUploads', function (e) {
-		jQuery('#urlUpload .alert').hide();
-		jQuery('#url').val('');
+	$(document).on('click', '.urlUploads', function (e) {
+		$('#urlUpload .alert').hide();
+		$('#url').val('');
 		$('#urlUpload').modal('show');
 	});
 
 
 
-	jQuery(document).on('click', '.createFolderImage', function (e) {
-		jQuery('.modal-body .alert').hide();
-		jQuery('#folderName').val('');
+	$(document).on('click', '.createFolderImage', function (e) {
+		$('.modal-body .alert').hide();
+		$('#folderName').val('');
 		$('#exampleModal').modal('show');
 	});
 
 
 
-	jQuery(document).on('click', '.checkboxs', function (e) {
-		if (jQuery('.checkboxs:checked').length > 0) {
-			jQuery('.checkboxs:checked').attr('data-check', 'checked');
-			jQuery('.media-toolbar-secondary').hide();
-			jQuery('.media-toolbar-two').show();
+	$(document).on('click', '.checkboxs', function (e) {
+		if ($('.checkboxs:checked').length > 0) {
+			$('.checkboxs:checked').attr('data-check', 'checked');
+			$('.media-toolbar-secondary').hide();
+			$('.media-toolbar-two').show();
 		} 
 		else {
-			jQuery('.checkboxs').attr('data-check', '');
-			jQuery('.media-toolbar-secondary').show();
-			jQuery('.media-toolbar-two').hide();
+			$('.checkboxs').attr('data-check', '');
+			$('.media-toolbar-secondary').show();
+			$('.media-toolbar-two').hide();
 		}
 	});
 
 
 
-	jQuery(document).on('click', '.allUpdate', function (e) {
-		jQuery('.allUpdateImage').show();
+	$(document).on('click', '.allUpdate', function (e) {
+		$('.allUpdateImage').show();
 		allUpload();
 	});
 });
@@ -238,7 +238,7 @@ function hideErrorSuccessHide() {
 var value = 0;
 
 function allUpload(count = 0) {
-	$.post(ajaxurl, { 'folder': jQuery('.createFolderImage').attr('data-id'), 'repost_id': value, 'action': 'mycustom_action' }, function (response) {
+	$.post(ajaxurl, { 'folder': $('.createFolderImage').attr('data-id'), 'repost_id': value, 'action': 'mycustom_action' }, function (response) {
 		response = maybe_parse_json('' + response + '');
 		console.log(response);
 		var progres = Math.ceil((100 / response.count) * response.progres);
@@ -258,7 +258,7 @@ function allUpload(count = 0) {
 			$('.allUpdateImage .bar').width(percentVal)
 			$('.allUpdateImage .percent').html(percentVal);
 			$('.allUpdateImage #status').html('Tebrikleri bütün resimleriniz sunucuya aktarıldı.');
-			document_parse(jQuery('.createFolderImage').attr('data-id'), this);
+			document_parse($('.createFolderImage').attr('data-id'), this);
 		}
 	});
 }
@@ -270,7 +270,7 @@ function maybe_parse_json(string) {
 	var json_object;
 
 	try {
-		json_object = jQuery.parseJSON(string);
+		json_object = $.parseJSON(string);
 	} 
 	catch (exception) {
 		var second_try = string.replace(/((.|\n)+?){"/gm, "{\"");
@@ -326,13 +326,13 @@ function replaceAll(str, from, to) {
 
 function createFolder() {
 
-	jQuery('ul.attachments').html('');
+	$('ul.attachments').html('');
 
-	var folder = jQuery('.createFolderImage').attr('data-id');
+	var folder = $('.createFolderImage').attr('data-id');
 
-	var folderName = jQuery('#folderName').val();
+	var folderName = $('#folderName').val();
 
-	jQuery.ajax({
+	$.ajax({
 
 		url: window.plugin_option.plugin_dir + 'query.php?get=createFolder',
 
@@ -346,21 +346,21 @@ function createFolder() {
 
 			if (result['createdFolder'].status == 'AlreadyExist') {
 
-				jQuery('.modal-body .alert-danger span').html(message.error.createFolder);
+				$('.modal-body .alert-danger span').html(message.error.createFolder);
 
-				jQuery('.modal-body .alert').show();
+				$('.modal-body .alert').show();
 
-				jQuery('.modal-body .success').hide();
+				$('.modal-body .success').hide();
 
 				hideErrorSuccess();
 
 			} else {
 
-				jQuery('.modal-body .success span').html(replaceAll(result['createdFolder'].name, '/', '') + ' ' + message.success.createFolder);
+				$('.modal-body .success span').html(replaceAll(result['createdFolder'].name, '/', '') + ' ' + message.success.createFolder);
 
-				jQuery('.modal-body .alert').hide();
+				$('.modal-body .alert').hide();
 
-				jQuery('.modal-body .success').show();
+				$('.modal-body .success').show();
 
 				hideErrorSuccess();
 
@@ -368,7 +368,7 @@ function createFolder() {
 
 
 
-			document_parse(jQuery('.createFolderImage').attr('data-id'), this);
+			document_parse($('.createFolderImage').attr('data-id'), this);
 
 		}
 
@@ -380,13 +380,13 @@ function createFolder() {
 
 function urlSave() {
 
-	jQuery('ul.attachments').html('');
+	$('ul.attachments').html('');
 
-	var folder = jQuery('.createFolderImage').attr('data-id');
+	var folder = $('.createFolderImage').attr('data-id');
 
-	var url = jQuery('#url').val();
+	var url = $('#url').val();
 
-	jQuery.ajax({
+	$.ajax({
 
 		url: window.plugin_option.plugin_dir + 'query.php?get=fetch',
 
@@ -414,23 +414,23 @@ function urlSave() {
 
 			if (deleteValue == false) {
 
-				jQuery('#urlUpload .alert-danger span').html(message.error.fetchedFileError);
+				$('#urlUpload .alert-danger span').html(message.error.fetchedFileError);
 
-				jQuery('#urlUpload .alert').show();
+				$('#urlUpload .alert').show();
 
-				jQuery('#urlUpload .success').hide();
+				$('#urlUpload .success').hide();
 
 				hideErrorSuccess();
 
 			} else {
 
-				jQuery('#urlUpload .success span').html(result['fetchedFile'].name + ' ' + message.success.fetchedFileSucces);
+				$('#urlUpload .success span').html(result['fetchedFile'].name + ' ' + message.success.fetchedFileSucces);
 
 				console.log(result['fetchedFile'].name + ' ' + message.success.fetchedFileSucces);
 
-				jQuery('#urlUpload .alert').hide();
+				$('#urlUpload .alert').hide();
 
-				jQuery('#urlUpload .success').show();
+				$('#urlUpload .success').show();
 
 				hideErrorSuccess();
 
@@ -438,7 +438,7 @@ function urlSave() {
 
 
 
-			document_parse(jQuery('.createFolderImage').attr('data-id'), this);
+			document_parse($('.createFolderImage').attr('data-id'), this);
 
 		}
 
@@ -453,11 +453,11 @@ function folderOpen(html) {
 	clicks++;
 	if (clicks == 1) {
 
-		jQuery('.createFolderImage').attr('data-id', '/');
+		$('.createFolderImage').attr('data-id', '/');
 
 		$(".mxlayer-close").trigger("click");
 
-		jQuery.mxlayer({
+		$.mxlayer({
 			title: 'image4io',
 			sidebar: $('#sidebar-template').html(),
 			main: $(html).html(),
@@ -477,55 +477,55 @@ function folderOpen(html) {
 var i = 0;
 
 function document_parse(dir, thiss) {
-	if (jQuery('.image4ioList').data('block') == 0) {
+	if ($('.image4ioList').data('block') == 0) {
 		if (typeof $(thiss).attr('data-type') == 'undefined') {
-			jQuery(thiss).attr('data-type', 'folder');
+			$(thiss).attr('data-type', 'folder');
 		}
 
-		if (jQuery(thiss).attr('data-type') == 'folder') {
-			bread(dir, jQuery(thiss).attr('data-id'));
-			if (jQuery('.image4ioList').attr('id') == 'fileList') {
-				jQuery('.image4ioList').html('');
+		if ($(thiss).attr('data-type') == 'folder') {
+			bread(dir, $(thiss).attr('data-id'));
+			if ($('.image4ioList').attr('id') == 'fileList') {
+				$('.image4ioList').html('');
 			} else {
-				jQuery('#the-list').html('');
+				$('#the-list').html('');
 			}
 
-			jQuery('.createFolderImage').attr('data-id', dir);
+			$('.createFolderImage').attr('data-id', dir);
 
-			jQuery.ajax({
+			$.ajax({
 				url: window.plugin_option.plugin_dir + 'scan.php',
 				type: 'POST',
 				data: { 'apiKey': window.plugin_option.apiKey, 'apiSecret': window.plugin_option.apiSecret, 'path': window.plugin_option.path, 'dir': dir },
 				dataType: 'json',
 				success: function (result) {
 					if (result.length > 0) {
-						jQuery('.no-media').hide();
+						$('.no-media').hide();
 
-						if (jQuery('.image4ioList').attr('id') == 'fileList') {
+						if ($('.image4ioList').attr('id') == 'fileList') {
 
 							result.forEach(function (element) {
 
 								if (element.type == 'file') {
 
-									jQuery('.attachments').append('<li tabindex="' + i + '" data-check="0" data-type="file" id="file_' + i + '" data-name="' + element.original_name + '" data-format="' + element.format + '" data-create="' + element.createdAt + '" data-widthh="' + element.width + ' x ' + element.height + '" data-size="' + element.size + '" data-id="' + element.name + '" onclick="document_parse(\'' + element.path + '\',this)" class="attachment"><div class="attachment-preview js--select-attachment type-image subtype-jpeg landscape"><div class="thumbnail"><div class="centered"><img src="https://cdn.image4.io/' + window.plugin_option.path + '' + element.name + '?w=120&f=auto" draggable="false" alt=""></div></div></div></li>');
+									$('.attachments').append('<li tabindex="' + i + '" data-check="0" data-type="file" id="file_' + i + '" data-name="' + element.original_name + '" data-format="' + element.format + '" data-create="' + element.createdAt + '" data-widthh="' + element.width + ' x ' + element.height + '" data-size="' + element.size + '" data-id="' + element.name + '" onclick="document_parse(\'' + element.path + '\',this)" class="attachment"><div class="attachment-preview js--select-attachment type-image subtype-jpeg landscape"><div class="thumbnail"><div class="centered"><img src="https://cdn.image4.io/' + window.plugin_option.path + '' + element.name + '?w=120&f=auto" draggable="false" alt=""></div></div></div></li>');
 
-									jQuery('#stylecss').append('#file_' + i + ' .attachment-preview:before {display: block; content:attr(data-before)}');
+									$('#stylecss').append('#file_' + i + ' .attachment-preview:before {display: block; content:attr(data-before)}');
 
 									var name = element.original_name.substr(0, 17);
 
-									jQuery('#file_' + i + ' .attachment-preview').attr('data-before', name);
+									$('#file_' + i + ' .attachment-preview').attr('data-before', name);
 
 									i++;
 
 								} else {
 
-									jQuery('.attachments').append('<li data-id="' + element.name + '" data-type="folder" data-check="0" class="attachment folder" id="folder_' + element.name + '" onclick="document_parse(\'' + element.path + '\',this)"><div class="attachment-preview js--select-attachment type-image subtype-jpeg landscape"><div class="thumbnail"><div class="centered"><img src="' + window.plugin_option.plugin_dir + 'admin/assets/images/folder.svg" draggable="false" alt=""></div></div></div></li>');
+									$('.attachments').append('<li data-id="' + element.name + '" data-type="folder" data-check="0" class="attachment folder" id="folder_' + element.name + '" onclick="document_parse(\'' + element.path + '\',this)"><div class="attachment-preview js--select-attachment type-image subtype-jpeg landscape"><div class="thumbnail"><div class="centered"><img src="' + window.plugin_option.plugin_dir + 'admin/assets/images/folder.svg" draggable="false" alt=""></div></div></div></li>');
 
-									jQuery('#stylecss').append('#folder_' + element.name + ' .attachment-preview:before {display: block; content:attr(data-before)}');
+									$('#stylecss').append('#folder_' + element.name + ' .attachment-preview:before {display: block; content:attr(data-before)}');
 
 									var name = element.name.substr(0, 17);
 
-									jQuery('#folder_' + element.name + ' .attachment-preview').attr('data-before', name);
+									$('#folder_' + element.name + ' .attachment-preview').attr('data-before', name);
 
 								}
 
@@ -537,11 +537,11 @@ function document_parse(dir, thiss) {
 
 								if (element.type == 'file') {
 
-									jQuery('#the-list').append('<tr class="author-self status-inherit"><th scope="row" class="check-column"><label class="screen-reader-text">' + element.original_name + '</label><input type="checkbox" class="checkboxs" name="media" value="' + element.name + '" data-type="' + element.type + '" data-id="' + element.name + '"></th><td class="title column-title has-row-actions column-primary" data-colname="Dosya"><strong class="has-media-icon"><a href="javascript:;" data-name="' + element.original_name + '" data-format="' + element.format + '" data-create="' + element.createdAt + '" data-widthh="' + element.width + ' x ' + element.height + '" data-type="' + element.type + '" data-size="' + element.size + '" data-id="' + element.name + '" onclick="document_parse(\'' + element.path + '\',this)" rel="bookmark"><img width="60" height="60" src="https://cdn.image4.io/' + window.plugin_option.path + '' + element.name + '?w=120&f=auto" class="attachment-60x60 size-60x60" alt=""></a></strong><p class="filename"><span class="screen-reader-text">Dosya adı: </span>' + element.original_name + '</p><div class="row-actions"><span class="delete"><a href="javascript:;" class="delete-attachment" data-id="' + element.name + '" data-type="' + element.type + '" role="button">Kalıcı olarak sil</a> | </span><span class="view"><a href="javascript:;" data-name="' + element.original_name + '" data-format="' + element.format + '" data-create="' + element.createdAt + '" data-widthh="' + element.width + ' x ' + element.height + '" data-type="' + element.type + '" data-size="' + element.size + '" data-id="' + element.name + '" onclick="document_parse(\'' + element.path + '\',this)" rel="bookmark">Görüntüle</a></span></div></td><td class="date column-date" data-colname="Tarih">' + element.createdAt + '</td></tr>');
+									$('#the-list').append('<tr class="author-self status-inherit"><th scope="row" class="check-column"><label class="screen-reader-text">' + element.original_name + '</label><input type="checkbox" class="checkboxs" name="media" value="' + element.name + '" data-type="' + element.type + '" data-id="' + element.name + '"></th><td class="title column-title has-row-actions column-primary" data-colname="Dosya"><strong class="has-media-icon"><a href="javascript:;" data-name="' + element.original_name + '" data-format="' + element.format + '" data-create="' + element.createdAt + '" data-widthh="' + element.width + ' x ' + element.height + '" data-type="' + element.type + '" data-size="' + element.size + '" data-id="' + element.name + '" onclick="document_parse(\'' + element.path + '\',this)" rel="bookmark"><img width="60" height="60" src="https://cdn.image4.io/' + window.plugin_option.path + '' + element.name + '?w=120&f=auto" class="attachment-60x60 size-60x60" alt=""></a></strong><p class="filename"><span class="screen-reader-text">Dosya adı: </span>' + element.original_name + '</p><div class="row-actions"><span class="delete"><a href="javascript:;" class="delete-attachment" data-id="' + element.name + '" data-type="' + element.type + '" role="button">Kalıcı olarak sil</a> | </span><span class="view"><a href="javascript:;" data-name="' + element.original_name + '" data-format="' + element.format + '" data-create="' + element.createdAt + '" data-widthh="' + element.width + ' x ' + element.height + '" data-type="' + element.type + '" data-size="' + element.size + '" data-id="' + element.name + '" onclick="document_parse(\'' + element.path + '\',this)" rel="bookmark">Görüntüle</a></span></div></td><td class="date column-date" data-colname="Tarih">' + element.createdAt + '</td></tr>');
 
 								} else {
 
-									jQuery('#the-list').append('<tr class="author-self status-inherit"><th scope="row" class="check-column"><label class="screen-reader-text">' + element.name + '</label><input type="checkbox" class="checkboxs" name="media" value="' + element.name + '" data-type="' + element.type + '" data-id="' + element.name + '"></th><td class="title column-title has-row-actions column-primary" data-colname="Dosya"><strong class="has-media-icon"><a href="javascript:;" data-id="' + element.name + '" onclick="document_parse(\'' + element.path + '\',this)" rel="bookmark"><img width="60" height="60" src="' + window.plugin_option.plugin_dir + 'admin/assets/images/folder.svg" class="attachment-60x60 size-60x60" alt=""></a></strong><p class="filename"><span class="screen-reader-text">Dosya adı: </span>' + element.name + '</p><div class="row-actions"><span class="delete"><a href="javascript:;" class="delete-attachment" data-id="' + element.name + '" data-type="' + element.type + '" role="button">Kalıcı olarak sil</a> | </span><span class="view"><a href="javascript:;" data-id="' + element.name + '" onclick="document_parse(\'' + element.path + '\',this)" rel="bookmark">Görüntüle</a></span></div></td><td class="date column-date" data-colname="Tarih"></td></tr>');
+									$('#the-list').append('<tr class="author-self status-inherit"><th scope="row" class="check-column"><label class="screen-reader-text">' + element.name + '</label><input type="checkbox" class="checkboxs" name="media" value="' + element.name + '" data-type="' + element.type + '" data-id="' + element.name + '"></th><td class="title column-title has-row-actions column-primary" data-colname="Dosya"><strong class="has-media-icon"><a href="javascript:;" data-id="' + element.name + '" onclick="document_parse(\'' + element.path + '\',this)" rel="bookmark"><img width="60" height="60" src="' + window.plugin_option.plugin_dir + 'admin/assets/images/folder.svg" class="attachment-60x60 size-60x60" alt=""></a></strong><p class="filename"><span class="screen-reader-text">Dosya adı: </span>' + element.name + '</p><div class="row-actions"><span class="delete"><a href="javascript:;" class="delete-attachment" data-id="' + element.name + '" data-type="' + element.type + '" role="button">Kalıcı olarak sil</a> | </span><span class="view"><a href="javascript:;" data-id="' + element.name + '" onclick="document_parse(\'' + element.path + '\',this)" rel="bookmark">Görüntüle</a></span></div></td><td class="date column-date" data-colname="Tarih"></td></tr>');
 
 								}
 
@@ -551,7 +551,7 @@ function document_parse(dir, thiss) {
 
 					} else {
 
-						jQuery('.no-media').show();
+						$('.no-media').show();
 
 					}
 
@@ -563,31 +563,31 @@ function document_parse(dir, thiss) {
 
 		} else {
 
-			if (jQuery(thiss).parent().attr('class') == 'attachments ui-sortable ui-sortable-disabled fileOkey image4ioList') {
+			if ($(thiss).parent().attr('class') == 'attachments ui-sortable ui-sortable-disabled fileOkey image4ioList') {
 
-				var images = '<img src="https://cdn.image4.io/' + window.plugin_option.path + '' + jQuery(thiss).attr('data-id') + '" />';
+				var images = '<img src="https://cdn.image4.io/' + window.plugin_option.path + '' + $(thiss).attr('data-id') + '" />';
 
-				if (!jQuery('#wp-content-editor-container #mceu_24').hasClass('mce-tinymce')) {
+				if (!$('#wp-content-editor-container #mceu_24').hasClass('mce-tinymce')) {
 
-					var value = jQuery('.wp-editor-area').val();
+					var value = $('.wp-editor-area').val();
 
-					jQuery('.wp-editor-area').val(value + ' ' + images);
+					$('.wp-editor-area').val(value + ' ' + images);
 
 				} else {
 
-					console.log(jQuery('.mce-tinymce').attr('style') + ' -> visibility: hidden; border-width: 1px; width: 100%; display: none;');
+					console.log($('.mce-tinymce').attr('style') + ' -> visibility: hidden; border-width: 1px; width: 100%; display: none;');
 
-					if (jQuery('.mce-tinymce').attr('style') == 'visibility: hidden; border-width: 1px; width: 100%; display: none;') {
+					if ($('.mce-tinymce').attr('style') == 'visibility: hidden; border-width: 1px; width: 100%; display: none;') {
 
-						var value = jQuery('.wp-editor-area').val();
+						var value = $('.wp-editor-area').val();
 
-						jQuery('.wp-editor-area').val(value + ' ' + images);
+						$('.wp-editor-area').val(value + ' ' + images);
 
 					} else {
 
-						var value = jQuery('.mce-tinymce #content_ifr').contents().find("body").html();
+						var value = $('.mce-tinymce #content_ifr').contents().find("body").html();
 
-						jQuery('.mce-tinymce #content_ifr').contents().find("body").append(images);
+						$('.mce-tinymce #content_ifr').contents().find("body").append(images);
 
 					}
 
@@ -597,25 +597,25 @@ function document_parse(dir, thiss) {
 			} 
 			else {
 
-				jQuery.ajax({
+				$.ajax({
 					url: window.plugin_option.plugin_dir + 'query.php?get=imageDetail',
 					type: 'POST',
-					data: { 'apiKey': window.plugin_option.apiKey, 'apiSecret': window.plugin_option.apiSecret, 'path': window.plugin_option.path, 'filesName': jQuery(thiss).attr('data-id') },
+					data: { 'apiKey': window.plugin_option.apiKey, 'apiSecret': window.plugin_option.apiSecret, 'path': window.plugin_option.path, 'filesName': $(thiss).attr('data-id') },
 					dataType: 'json',
 					success: function (result) {
-						jQuery('.details-image').attr('src', 'https://cdn.image4.io/' + window.plugin_option.path + '' + result.name);
-						jQuery('.delete-attachment').attr('data-id', result.name);
-						jQuery('.delete-attachment').attr('data-type', jQuery(thiss).attr('data-type'));
-						jQuery('.filename span').html(result.userGivenName);
-						jQuery('.filetype span').html(result.format);
-						jQuery('.uploaded span').html(result.createdAtUTC);
-						jQuery('.file-size span').html(result.size + ' KB');
-						jQuery('.dimensions span').html(result.width + ' x ' + result.height + ' px');
+						$('.details-image').attr('src', 'https://cdn.image4.io/' + window.plugin_option.path + '' + result.name);
+						$('.delete-attachment').attr('data-id', result.name);
+						$('.delete-attachment').attr('data-type', $(thiss).attr('data-type'));
+						$('.filename span').html(result.userGivenName);
+						$('.filetype span').html(result.format);
+						$('.uploaded span').html(result.createdAtUTC);
+						$('.file-size span').html(result.size + ' KB');
+						$('.dimensions span').html(result.width + ' x ' + result.height + ' px');
 					}
 				});
 
-				jQuery(".mxlayer-close").trigger("click");
-				jQuery.mxlayer({
+				$(".mxlayer-close").trigger("click");
+				$.mxlayer({
 					title: '',
 					main: $('#main-template').html(),
 					button: false,
@@ -631,13 +631,13 @@ function document_parse(dir, thiss) {
 	} 
 	else {
 
-		if (jQuery(thiss).attr('data-check') == 'checked') {
-			jQuery(thiss).attr('data-check', '0');
-			jQuery(thiss).removeClass('details');
+		if ($(thiss).attr('data-check') == 'checked') {
+			$(thiss).attr('data-check', '0');
+			$(thiss).removeClass('details');
 		} 
 		else {
-			jQuery(thiss).attr('data-check', 'checked');
-			jQuery(thiss).addClass('details');
+			$(thiss).attr('data-check', 'checked');
+			$(thiss).addClass('details');
 		}
 	}
 }
@@ -646,11 +646,11 @@ function document_parse(dir, thiss) {
 
 function bread(dir, name) {
 	if (dir == '/') {
-		jQuery('.bread').html('');
-		jQuery('.bread').append('<li><a href="javascript:;" data-type="folder" onclick="document_parse(\'/\',this)">Ana Klasör</a></li>');
+		$('.bread').html('');
+		$('.bread').append('<li><a href="javascript:;" data-type="folder" onclick="document_parse(\'/\',this)">Ana Klasör</a></li>');
 	} 
 	else {
-		jQuery('.bread').append('<li> <span>></span> <a href="javascript:;" data-type="folder" onclick="document_parse(\'' + dir + '\',this)">' + name + '</a></li>');
+		$('.bread').append('<li> <span>></span> <a href="javascript:;" data-type="folder" onclick="document_parse(\'' + dir + '\',this)">' + name + '</a></li>');
 	}
 }
 
