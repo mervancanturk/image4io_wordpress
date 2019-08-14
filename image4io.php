@@ -12,8 +12,6 @@ Version: 0.1.0
 
 Author: image4io
 
-Author URI: https://image4.io
-
 License: GNU
 
 Domain Path: /language
