@@ -1,0 +1,191 @@
+.mxlayer-container{
+    position: relative;
+    font-family: "Open Sans",sans-serif;
+    font-size: 12px;
+}
+
+.mxlayer-content{
+    position: fixed;
+    top: 30px;
+    left: 30px;
+    right: 30px;
+    bottom: 30px;
+    z-index: 160000;
+    -webkit-box-shadow: 0 5px 15px rgba(0,0,0,.7);
+    box-shadow: 0 5px 15px rgba(0,0,0,.7);
+    background: #fcfcfc;
+    -webkit-font-smoothing: subpixel-antialiased;
+}
+
+.mxlayer-backdrop{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    min-height: 360px;
+    background: #000;
+    opacity: .7;
+    z-index: 159900;
+}
+
+.mxlayer-sidebar{
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 200px;
+    z-index: 150;
+    display: none;
+}
+
+.mxlayer-container.sidebar .mxlayer-sidebar{
+    display: block;
+}
+
+.mxlayer-sidebar-body {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0;
+    padding: 10px 0;
+    background: #f3f3f3;
+    border-right-width: 1px;
+    border-right-style: solid;
+    border-right-color: #ccc;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.mxlayer-sidebar-body>a {
+    display: block;
+    position: relative;
+    padding: 8px 20px;
+    margin: 0;
+    line-height: 18px;
+    font-size: 14px;
+    color: #0074a2;
+    text-decoration: none;
+}
+
+.mxlayer-sidebar-body .active,
+.mxlayer-sidebar-body .active:hover {
+    color: #222;
+    font-weight: 700;
+}
+
+.mxlayer-sidebar-body>a:hover {
+    color: #21759B;
+    background: rgba(0,0,0,.04);
+}
+
+.mxlayer-sidebar-body .separator {
+    height: 0;
+    margin: 12px 20px;
+    padding: 0;
+    border-top: 1px solid #ddd;
+}
+
+.mxlayer-close{
+    position: absolute;
+    text-decoration: none;
+    top: 10px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    z-index: 1000;
+    opacity: .7;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADoAAAB0CAYAAADU6SE0AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyFpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChXaW5kb3dzKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDoyRUIzOUNFMDVCQzAxMUU1QTRFNUEzMEQ4MzFGMDU0NSIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDoyRUIzOUNFMTVCQzAxMUU1QTRFNUEzMEQ4MzFGMDU0NSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjJFQjM5Q0RFNUJDMDExRTVBNEU1QTMwRDgzMUYwNTQ1IiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjJFQjM5Q0RGNUJDMDExRTVBNEU1QTMwRDgzMUYwNTQ1Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+cjW4vgAABDtJREFUeNrs2z1PFEEYB/C540Bi5UsUPwAfgMKCOwT5BCoi0cJOOIWQaGJhY2GiDbFTQY+XxMKCxNfaxBjfOgvtKTSivImlIejd+Twymwzj7N7e7MzOrDyTPFlOw+39mN3Z+edmcvV6ne2Elmc7pBGUoAQlKEEJSlCCEpSgBM16w5imW7y1Q12H2mX5ow5Cndb9zEmhe6BuQ/2CmrR4hXRDLUItQ/W5gF7DP7BQsxawJahV4RzvXUD3Qd2RsDNQOUvINaijLqDYClDTEnbaALYItSK8J4L7XN2jjbD5BMhlFdI1FFtLCLZFA7kkvMeKiPQBagKrQvaaeCSahibBluIgfYIGMy4VthATuRqG9A3K+KgbBysj8RFyxPRsziY0wM4onrMFAbncDNJXaHAZz0pYnDb2S8jvUZdrFqBh2E0dpO/QAIvTxd8S+BNUj+3ElWYerUHNc6jYPkK9y0IebWaCviT1ptZ00edLtyilkC9QT3RTj69QOYWsCfekVurxERqZQnQjnm/QRkhxblyRsJWoe9YnaKlR1EqC9QUaO4Xoph4foLrIqNRTkbGuoU1FrSQRzyW0RyeF6EY8V9Buw8iGEc8FdAjqm24K0Uw9FReTehwk2vjP61ADUG8MB4Ey1Jzwb3rf8Ri4dHt5+jDZk6qexdH3PlSrzmfN0aJHghKUoAQlKEEJSlCCEpSgBCUoQQlKUIISlKAEJShBCUpQgjbbCkl+ufPqg7/Hnwsfxnd3duGCRlbb3DDfG23teI5++LEFzvNi4cbZdKHQ9kJNwMlH4NjFtr7LrFnokBKc4xEcW6FOQL1MFQq9dxEOI/zlOX40jS3BeZ7BcT9/fRPqcNr36C22tfmOCVj8wtbkli1EHuCvcenAZReD0Q+oS2xrEUXQhg1hcYndUwGJi0Bwa+UrV6MuLjQek7AjrMF6vpjIgwLyFNRr148XxI4qsPeY3pYtXMvbwV+vJkWaGHXFVuVYJgxQwXGU/39c5CEJmXili+kJQzWkZ++yeFu2rCBtzYwQeyEEG7Vl67GAXDOJNH3pbnvEQp0PuYzH2PadEjISHyEnod5mZa5b59jZiJ6VL1dEDphG2uxRGZsTZk74nN3gvTgvjK7rNnoyzfSiWs83DvVcQppeR+gkpgXYSeEx08qPn6GO20SmnUedbtlKE4oDz0P27zLUYyzZDn+voEWeQoLRdZHPZeW5cS7L0KIiap3hI6yN1OMEqkohg8I9GZZ6clmCBsiOiKgVpJ5pRerJZwFaaiJqVXnPitgyn0HlfYbKc9c4ebKquIzLmnk2FWgYMs5kICz1TJnA5i0idaJWTYEtN4h4qU7qeziyw0DUaibipdqj3Qpk0qgVJ+KlCh2SRleTUSvAzkmTikkX0Mxs2Up6j2Ia+Qo1AXXFUtQKsDX+Rx3WeRPaskVQghKUoAQlKEEJStD/tf0RYABbm8F7VxluVQAAAABJRU5ErkJggg==");
+    background-size: 30px;
+}
+
+.mxlayer-close:hover{
+    opacity: 1;
+    background-position: 0 -30px;
+}
+
+.mxlayer-container.sidebar .mxlayer-main-header,
+.mxlayer-container.sidebar .mxlayer-main-body,
+.mxlayer-container.sidebar .mxlayer-main-footer{
+    left: 200px;
+}
+
+.mxlayer-main-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    z-index: 200;
+}
+
+.mxlayer-main-header h1 {
+    padding: 0 16px;
+    font-size: 22px;
+    line-height: 50px;
+    margin: 0;
+}
+
+.mxlayer-main-body {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: auto;
+    width: auto;
+    margin: 0;
+    padding: 10px;
+    overflow: auto;
+    background: #fff;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+
+.mxlayer-main-footer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 60px;
+    z-index: 100;
+    padding: 0 10px;
+}
+
+.mxlayer-confirm-button{
+    float: right;
+    margin-top: 15px;
+    display: inline-block;
+    text-decoration: none;
+    font-size: 13px;
+    line-height: 26px;
+    height: 28px;
+    line-height: 28px;
+    padding: 0 12px 2px;
+    border-width: 1px;
+    color: #fff;
+    text-decoration: none;
+    border-style: solid;
+    border-color: #0074a2;
+    -webkit-appearance: none;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    white-space: nowrap;
+    background: #2ea2cc;
+    -webkit-box-shadow: inset 0 1px 0 rgba(120,200,230,.5),0 1px 0 rgba(0,0,0,.15);
+    box-shadow: inset 0 1px 0 rgba(120,200,230,.5),0 1px 0 rgba(0,0,0,.15);
+}
+
+.mxlayer-confirm-button:hover{
+    background: #1e8cbe;
+    border-color: #0074a2;
+    -webkit-box-shadow: inset 0 1px 0 rgba(120,200,230,.6);
+    box-shadow: inset 0 1px 0 rgba(120,200,230,.6);
+    color: #fff;
+}

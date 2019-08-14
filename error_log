@@ -1,0 +1,4 @@
+[09-Aug-2019 18:33:19 UTC] PHP Notice:  Undefined property: stdClass::$folders in /home/ideatema/demo.ideatema.com/kurumsal2/wp-content/plugins/image4io/scan.php on line 22
+[09-Aug-2019 18:33:19 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/ideatema/demo.ideatema.com/kurumsal2/wp-content/plugins/image4io/scan.php on line 22
+[09-Aug-2019 18:33:19 UTC] PHP Notice:  Undefined property: stdClass::$files in /home/ideatema/demo.ideatema.com/kurumsal2/wp-content/plugins/image4io/scan.php on line 38
+[09-Aug-2019 18:33:19 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/ideatema/demo.ideatema.com/kurumsal2/wp-content/plugins/image4io/scan.php on line 38

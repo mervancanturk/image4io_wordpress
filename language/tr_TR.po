@@ -1,0 +1,169 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: image4io\n"
+"POT-Creation-Date: 2019-07-28 19:25+0300\n"
+"PO-Revision-Date: 2019-07-31 02:16+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: tr_TR\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: ..\n"
+"X-Poedit-SearchPath-1: .\n"
+
+#: ../admin/template/modal.php:8
+msgid "medias"
+msgstr "Ortamlar"
+
+#: ../admin/template/modal.php:9 ../admin/template/settings.php:150
+#: ../admin/template/settings.php:56 ../admin/template/settings.php:168
+msgid "create_folder"
+msgstr "Klasör Oluştur"
+
+#: ../admin/template/modal.php:10 ../admin/template/settings.php:10
+msgid "image_upload"
+msgstr "Resim Yükle"
+
+#: ../admin/template/modal.php:12
+msgid "url_upload"
+msgstr "URL Adresinden Yükle"
+
+#: ../admin/template/modal.php:36 ../admin/template/settings.php:84
+msgid "no_media"
+msgstr "Ortam Dosyası Bulunamadı."
+
+#: ../admin/template/modal.php:49 ../admin/template/settings.php:163
+msgid "folder_name"
+msgstr "Klasör Adı"
+
+#: ../admin/template/modal.php:69 ../admin/template/settings.php:26
+msgid "upload_title"
+msgstr "Yüklemek istediğiniz dosyaları herhangi bir yere sürükleyip bırakın"
+
+#: ../admin/template/modal.php:70 ../admin/template/settings.php:27
+msgid "upload_or"
+msgstr "ya da"
+
+#: ../admin/template/modal.php:71 ../admin/template/settings.php:28
+msgid "file_select"
+msgstr "Dosya Seçiniz"
+
+#: ../admin/template/modal.php:77 ../admin/template/settings.php:41
+msgid "file_all_size"
+msgstr "Yüklenebilecek en büyük dosya boyutu: 2 MB."
+
+#: ../admin/template/modal.php:74 ../admin/template/settings.php:37
+msgid "upload_load"
+msgstr "Yükleniyor..."
+
+#: ../admin/template/settings.php:50
+msgid "list_view"
+msgstr "Liste görünümü"
+
+#: ../admin/template/settings.php:53
+msgid "grid_view"
+msgstr "Izgara görünümü"
+
+#: ../admin/template/settings.php:58
+msgid "all_select"
+msgstr "Toplu Seçim"
+
+#: ../admin/template/settings.php:61
+msgid "cancel"
+msgstr "Vazgeç"
+
+#: ../admin/template/settings.php:62 ../admin/template/settings.php:137
+msgid "delete"
+msgstr "Kalıcı Olarak Sil"
+
+#: ../admin/template/settings.php:114
+msgid "file_name"
+msgstr "Dosya Adı"
+
+#: ../admin/template/settings.php:115
+msgid "file_type"
+msgstr "Dosya Türü"
+
+#: ../admin/template/settings.php:116
+msgid "upload_date"
+msgstr "Yükleme Tarihi"
+
+#: ../admin/template/settings.php:117
+msgid "file_size"
+msgstr "Dosya Boyutu"
+
+#: ../admin/template/settings.php:118
+msgid "sizes"
+msgstr "Ölçüler"
+
+#: ../admin/template/settings.php:169
+msgid "close"
+msgstr "Kapat"
+
+#: ../admin/template/settings.php:16
+msgid "upload_close"
+msgstr "Yükleyiciyi Kapat"
+
+#: ../admin/template/settings.php:191
+msgid "url"
+msgstr "URL Adresi"
+
+#: ../admin/template/settings.php:57 ../admin/template/settings.php:191
+msgid "url_save"
+msgstr "URL´den Aktar"
+
+#: ../admin/template/header.php:9
+msgid "upload_success"
+msgstr "Dosyası yüklendi oluşturuldu."
+
+#: ../admin/template/header.php:10
+msgid "deleteSuccess"
+msgstr "Seçilenler başarı ile silindi."
+
+#: ../admin/template/header.php:11
+msgid "createFolderSuccess"
+msgstr "Klasör oluşturuldu."
+
+#: ../admin/template/header.php:16
+msgid "deleteError"
+msgstr "Böyle bir dosya isimi bulunamadı!"
+
+#: ../admin/template/header.php:17
+msgid "createFolderError"
+msgstr "Klasörün işlenmesi sırasında bir hata ile karşılaşıldı."
+
+#: ../admin/template/header.php:22
+msgid "mxlayerTitle"
+msgstr "Görsel Özellikleri"
+
+#: ../admin/template/header.php:12
+msgid "fetchedFileSucces"
+msgstr "URL´den aktarma işlemi başarı ile tamamlandı."
+
+#: ../admin/template/header.php:18
+msgid "fetchedFileError"
+msgstr "URL´den aktarma işlemi sırasında bir sorun oluştu."
+
+#: ../admin/template/settings.php:59
+msgid "all_update"
+msgstr "Tüm Resimleri Aktar"
+
+#: ../admin/template/settings.php:51
+msgid "all_update_title"
+msgstr "Tüm resimleriniz image4io sunucusuna aktarılıyor lütfen bekleyiniz."
+
+#: ../admin/template/header.php:13
+msgid "allupload"
+msgstr "Tüm resimleriniz image4io sunucusuna aktarıldı."
+
+#: ../admin/template/header.php:13
+msgid "fetchedFileSuccess"
+msgstr "url adresinden resim başarı ile aktarıldı."
+
+#: ../admin/template/header.php:13
+msgid "fetchedFileError"
+msgstr "url adresinden resim aktarılırken hata ile karşılaşıldı."
