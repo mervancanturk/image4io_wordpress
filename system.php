@@ -22,7 +22,7 @@ function admin_script()
 
 	wp_enqueue_style('jquery-mxlayer', plugin_dir_url(__FILE__) . 'admin/assets/css/jquery.mxlayer.css');
 
-	wp_enqueue_style('styles', plugin_dir_url(__FILE__) . 'admin/assets/css/styles.css');
+	wp_enqueue_style('styles', plugin_dir_url(__FILE__) . 'admin/assets/css/styles.min.css');
 
 	wp_enqueue_script('jquery-form', plugin_dir_url(__FILE__) . 'admin/assets/js/jquery.form.min.js', array('jquery'), '', true);
 
