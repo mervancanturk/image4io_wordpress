@@ -1,8 +1,11 @@
 ﻿<?php
 
+ini_set( 'upload_max_size' , '10M' );
+ini_set( 'post_max_size', '10M');
+ini_set( 'max_execution_time', '300' );
+
 function layout2job_func()
 {
-
 	remove_action('init', 'my_deregister_heartbeat', 100);
 }
 
@@ -23,7 +26,7 @@ function admin_script()
 
 	wp_enqueue_script('jquery-form', plugin_dir_url(__FILE__) . 'admin/assets/js/jquery.form.min.js', array('jquery'), '', true);
 
-	wp_enqueue_script('jquery-script', plugin_dir_url(__FILE__) . 'admin/assets/js/script.js', array('jquery'), '', true);
+	wp_enqueue_script('jquery-script', plugin_dir_url(__FILE__) . 'admin/assets/js/script.min.js', array('jquery'), '', true);
 }
 
 
