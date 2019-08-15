@@ -210,7 +210,10 @@
 
 					<div class="display:block; width:100%; clear:both;">
 
-						<?php if(@$_GET['listType'] == 'fileList' || $_GET['listType'] == '') { ?>
+						<?php
+
+                        if(isset($_GET['listType'])){
+                        if(@$_GET['listType'] == 'fileList') { ?>
 
 							<ul tabindex="" data-block="0" class="attachments ui-sortable ui-sortable-disabled image4ioList fileList" id="fileList">
 
@@ -286,7 +289,7 @@
 
 							</table>
 
-						<?php } ?>
+						<?php } } ?>
 
 					</div>
 

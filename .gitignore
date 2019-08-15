@@ -3,3 +3,10 @@
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+error_log
+.idea/image4io_wordpress.iml
+.idea/modules.xml
+.idea/misc.xml
+.idea/vcs.xml
+.idea/encodings.xml
+.idea/workspace.xml

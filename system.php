@@ -4,10 +4,6 @@ ini_set( 'upload_max_size' , '10M' );
 ini_set( 'post_max_size', '10M');
 ini_set( 'max_execution_time', '300' );
 
-function layout2job_func()
-{
-	remove_action('init', 'my_deregister_heartbeat', 100);
-}
 
 
 

@@ -58,9 +58,12 @@ function image4io()
 
 		$connect = $image->connect();
 
+		$error_check = json_decode($connect['error']);
+
 		$connect = json_decode($connect['content']);
 
-		if ($connect->Message == '') {
+
+		if ($error_check == NULL) {
 
 			switch (@$_GET['get']) {
 
@@ -110,9 +113,12 @@ function image4io()
 		switch (@$_GET['get']) {
 			case '';
 				if ($_POST) {
-					add_option('image4io_apiKey', $_POST['image4io_apiKey']);
-					add_option('image4io_apiSecret', $_POST['image4io_apiSecret']);
-					add_option('image4io_path', $_POST['image4io_path']);
+                    update_option('image4io_apiKey', $_POST['image4io_apiKey']);
+                    update_option('image4io_apiSecret', $_POST['image4io_apiSecret']);
+                    update_option('image4io_path', $_POST['image4io_path']);
+
+var_dump($_POST['image4io_apiKey'],$_POST['image4io_apiSecret'],$_POST['image4io_path']);
+
 					echo '
 						<style type="text/css">
 							.alert {
@@ -126,7 +132,7 @@ function image4io()
 						  Api bilgileriniz tanımlandı. Doğruluğu kontrol ediliyor.
 						</div>
 					';
-					echo '<meta http-equiv="refresh" content="1;">';
+					//echo '<meta http-equiv="refresh" content="1;">';
 				}
 
 				include('admin/template/api_key.php');
@@ -135,6 +141,10 @@ function image4io()
 	}
 }
 
+function layout2job_func()
+{
+    remove_action('init', 'my_deregister_heartbeat', 100);
+}
 
 
 add_action('after_setup_theme', 'layout2job_func', 99);
