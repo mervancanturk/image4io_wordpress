@@ -2,14 +2,12 @@
 
 /*
 	Image4.io Api
-    Updated: mervancanturk@me.com
 */
 
 class Image4IO
 {
 	public $apiKey;
 	public $apiSecret;
-	public $Message;
 
 	public function __construct($_apiKey, $_apiSecret)
 	{
