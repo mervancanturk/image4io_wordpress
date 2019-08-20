@@ -120,8 +120,6 @@ class Image4IO
 		);
 	}
 
-
-
 	public function connect()
 	{
 
@@ -135,8 +133,6 @@ class Image4IO
 		return $query;
 	}
 
-
-
 	public function listfolder($path = '')
 	{
 		$headers = array(
@@ -149,8 +145,6 @@ class Image4IO
 		return $query;
 	}
 
-
-
 	public function createfolder($path = '')
 	{
 		$headers = array(
@@ -162,8 +156,6 @@ class Image4IO
 
 		return $query;
 	}
-
-
 
 	public function upload($files = '', $folder = '')
 	{
@@ -179,8 +171,6 @@ class Image4IO
 		return $query;
 	}
 
-
-
 	public function copys($source = '', $target = '')
 	{
 
@@ -193,8 +183,6 @@ class Image4IO
 
 		return $query;
 	}
-
-
 
 	public function move($source = '', $target = '')
 	{
@@ -209,8 +197,6 @@ class Image4IO
 		return $query;
 	}
 
-
-
 	public function fetch($from = '', $target = '')
 	{
 		$headers = array(
@@ -222,8 +208,6 @@ class Image4IO
 
 		return $query;
 	}
-
-
 
 	public function delete($name = '')
 	{
@@ -241,8 +225,6 @@ class Image4IO
 		return $query;
 	}
 
-
-
 	public function deletefolder($name = '')
 	{
 
@@ -258,8 +240,6 @@ class Image4IO
 
 		return $query;
 	}
-
-
 
 	public function get($name = '')
 	{

@@ -11,10 +11,11 @@ function extra_post_info_menus()
 	$capability = 'manage_options';
 	$menu_slug  = 'image4io';
 	$function   = 'image4io';
+	$function_settings   = 'image4io_settings_page';
 	$icon_url   = '';
 	$position   = 33;
 
-	add_menu_page(
+    add_media_page(
 		$page_title,
 		$menu_title,
 		$capability,
@@ -23,38 +24,56 @@ function extra_post_info_menus()
 		$icon_url,
 		$position
 	);
+
+    add_options_page(
+        $page_title,
+        $menu_title,
+        $capability,
+        $menu_slug,
+        $function_settings,
+        $icon_url,
+        $position);
 }
 
 
-
-function myload_plugin_textdomain()
-{
-
-	$domain = plugin_dir_path(__FILE__);
-
-	load_plugin_textdomain('image4io', false, $domain . 'language/');
-
-	return load_textdomain('image4io', $domain . 'language/tr_TR.mo');
-}
-
-add_action('init', 'myload_plugin_textdomain');
-
+//
+//function myload_plugin_textdomain()
+//{
+//
+//	$domain = plugin_dir_path(__FILE__);
+//
+//	load_plugin_textdomain('image4io', false, $domain . 'language/');
+//
+//	return load_textdomain('image4io', $domain . 'language/tr_TR.mo');
+//}
+//
+//add_action('init', 'myload_plugin_textdomain');
+//
 
 
 function image4io()
 {
 
-	$apiKey = get_option('image4io_apiKey');
+    $image4io_settings = json_decode(get_option('image4io_settings'));
 
-	$apiSecret = get_option('image4io_apiSecret');
+	$apiKey = $image4io_settings->apikey;
 
-	$path = get_option('image4io_path');
+	$apiSecret = $image4io_settings->api_secret;
+
+	$path = $image4io_settings->path;
+
+	$cloudname = $image4io_settings->cloudname;
+
+    var_dump($apiKey,$apiSecret,$path,$cloudname);
 
 	$plugin_dir = plugin_dir_url(__FILE__);
 
-	if ($apiKey != '' && $apiSecret != '') {
+	if ($apiKey && $apiSecret) {
+
 
 		$image = new Image4IO($apiKey, $apiSecret);
+
+        var_dump($image);
 
 		$connect = $image->connect();
 
@@ -107,13 +126,103 @@ function image4io()
 			';
 		}
 	} else {
-		switch (@$_GET['get']) {
-			case '';
-				if ($_POST) {
-					add_option('image4io_apiKey', $_POST['image4io_apiKey']);
-					add_option('image4io_apiSecret', $_POST['image4io_apiSecret']);
-					add_option('image4io_path', $_POST['image4io_path']);
-					echo '
+
+
+	}
+}
+
+
+function image4io_no_valid_api_set() {
+
+    $image4io_settings = json_decode(get_option('image4io_settings'));
+
+    $apiKey = $image4io_settings->apikey;
+    $apiSecret = $image4io_settings->api_secret;
+
+    if ($apiKey != null) {
+
+    $image = new Image4IO($apiKey, $apiSecret);
+    $connect = $image->connect();
+
+    $resultcode = $connect['headers'][0];
+
+    //var_dump($resultcode);
+
+    if ($resultcode != 'HTTP/2 200 ') {
+
+        $class = 'notice notice-error';
+        $message = __( 'image4io API bilgileri doğru değil.', 'sample-text-domain' );
+        printf( '<div class="%1$s"><p>%2$s <a href="options-general.php?page=image4io">Düzelt</a></p></div>', esc_attr( $class ), esc_html( $message ) );
+    }
+    }
+
+}
+function image4io_no_api_set() {
+
+    $image4io_settings = json_decode(get_option('image4io_settings'));
+
+    $apiKey = $image4io_settings->apikey;
+
+    if ($apiKey == null) {
+
+        $class = 'notice notice-warning';
+        $message = __( 'image4io API bilgileri henüz girilmemiş.', 'sample-text-domain' );
+        printf( '<div class="%1$s"><p>%2$s <a href="options-general.php?page=image4io">Düzelt</a></p></div>', esc_attr( $class ), esc_html( $message ) );
+    }
+
+}
+add_action( 'admin_notices', 'image4io_no_api_set' );
+add_action( 'admin_notices', 'image4io_no_valid_api_set' );
+
+
+$valid_api = false;
+function image4io_settings_page()
+{
+
+    $image4io_settings = json_decode(get_option('image4io_settings'));
+
+    $apiKey = $image4io_settings->apikey;
+
+    $apiSecret = $image4io_settings->api_secret;
+
+    $path = $image4io_settings->path;
+
+    $cloudname = $image4io_settings->cloudname;
+
+    var_dump($apiKey,$apiSecret,$path,$cloudname);
+
+    $plugin_dir = plugin_dir_url(__FILE__);
+
+    if ($apiKey && $apiSecret) {
+
+        $image = new Image4IO($apiKey, $apiSecret);
+
+        $connect = $image->connect();
+
+        $resultcode = $connect['headers'][0];
+
+        $connect = json_decode($connect['content']);
+
+        var_dump($connect);
+        var_dump($resultcode);
+
+        if ($resultcode == 'HTTP/2 200 ') {
+
+            $valid_api = true;
+
+        }
+    }
+        switch (@$_GET['get']) {
+            case '';
+                if ($_POST['image4io_formcontrol']) {
+
+                    $tmpsettings = image4io_settings($_POST['image4io_apiKey'],$_POST['image4io_apiSecret'],$_POST['image4io_Cloudname'],$_POST['image4io_Path']);
+
+                    var_dump($tmpsettings);
+
+                    update_option("image4io_settings",$tmpsettings);
+
+                    echo '
 						<style type="text/css">
 							.alert {
 							  padding: 20px;
@@ -126,15 +235,16 @@ function image4io()
 						  Api bilgileriniz tanımlandı. Doğruluğu kontrol ediliyor.
 						</div>
 					';
-					echo '<meta http-equiv="refresh" content="1;">';
-				}
+                    header("refresh: 0;");
+                }
 
-				include('admin/template/api_key.php');
-				break;
-		}
-	}
+                break;
+
+    }
+    include('admin/template/api_key.php');
 }
 
 
 
 add_action('after_setup_theme', 'layout2job_func', 99);
+

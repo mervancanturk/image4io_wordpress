@@ -1,6 +1,3 @@
-<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
 
 <script type="text/javascript">
 
@@ -31,3 +28,4 @@
 
 	//var ajaxurl = <?php admin_url('admin-ajax.php'); ?>;
 </script>
+

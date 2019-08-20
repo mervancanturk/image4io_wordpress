@@ -1,15 +1,24 @@
 ﻿<?php
 
-ini_set( 'upload_max_size' , '10M' );
-ini_set( 'post_max_size', '10M');
-ini_set( 'max_execution_time', '300' );
+//ini_set( 'upload_max_size' , '10M' );
+//ini_set( 'post_max_size', '10M');
+//ini_set( 'max_execution_time', '300' );
 
 function layout2job_func()
 {
+
+    add_option("image4io_settings",image4io_settings());
 	remove_action('init', 'my_deregister_heartbeat', 100);
 }
 
+function image4io_settings($api_key = null,$api_secret = null,$cloudname=null,$path=null){
 
+    return json_encode(array (
+        'apikey'=>$api_key,
+        'api_secret'=>$api_secret,
+        'cloudname'=>$cloudname,
+        'path'=>$path));
+}
 
 function admin_script()
 {
@@ -86,8 +95,6 @@ function add_main_menu($admin_bar)
 
 add_action('admin_bar_menu', 'add_main_menu', 33);
 
-
-
 add_action('wp_ajax_mycustom_action', 'mycustom_action');
 
 add_action('wp_ajax_nopriv_mycustom_action', 'mycustom_action');
@@ -96,7 +103,7 @@ add_action('wp_ajax_nopriv_mycustom_action', 'mycustom_action');
 
 
 
-$apiKey = get_option('image4io_apiKey');
+$apiKey = get_option('image4io_settings');
 
 $apiSecret = get_option('image4io_apiSecet');
 
